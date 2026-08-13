@@ -1,0 +1,14 @@
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { BarChart3, ClipboardList, PlusCircle, Inbox, UserRound, Workflow, History } from 'lucide-react';
+import { useExpedientes } from '../context/ExpedienteContext.jsx';
+
+export default function Layout({children}){
+ const {rol,setRol}=useExpedientes(); const loc=useLocation(); const navigate=useNavigate(); const jefe=rol==='jefatura';
+ useEffect(()=>{
+   if(rol==='responsable' && !loc.pathname.startsWith('/mis-expedientes') && !loc.pathname.startsWith('/historico')) navigate('/mis-expedientes',{replace:true});
+   if(rol==='jefatura' && loc.pathname.startsWith('/mis-expedientes')) navigate('/',{replace:true});
+ },[rol,loc.pathname,navigate]);
+ const nav=jefe?[['/','Dashboard',BarChart3],['/bandeja','Bandeja',Inbox],['/workflow','Workflow',Workflow],['/historico','Histórico',History],['/nueva','Nueva solicitud',PlusCircle]]:[['/mis-expedientes','Mi bandeja',ClipboardList],['/historico','Histórico',History]];
+ return <div className="min-h-dvh bg-arena-50"><header className="bg-verde-700 text-white shadow-sm"><div className="mx-auto flex max-w-7xl flex-wrap items-center gap-4 px-4 py-3"><div className="flex items-center gap-3"><span className="rounded-xl bg-white/10 p-2.5"><ClipboardList size={22}/></span><div><div className="font-semibold">Gestión de Expedientes</div><div className="text-xs text-verde-100">Maqueta MVP · FW Coipo</div></div></div><div className="ml-auto flex items-center gap-3"><span className="hidden text-xs text-verde-100 sm:block">Ver sistema como</span><label className="flex items-center gap-2 rounded-xl bg-verde-800/70 px-3 py-2"><UserRound size={16}/><select value={rol} onChange={e=>setRol(e.target.value)} className="bg-transparent text-sm font-semibold text-white"><option value="jefatura" className="text-slate-800">Jefatura</option><option value="responsable" className="text-slate-800">Responsable</option></select></label></div></div><nav className="border-t border-verde-600/50"><div className="mx-auto flex max-w-7xl gap-1 overflow-x-auto px-2">{nav.map(([to,label,Icon])=><NavLink key={to} to={to} end={to==='/' } className={({isActive})=>`flex min-h-12 items-center gap-2 border-b-2 px-4 py-3 text-sm whitespace-nowrap ${isActive?'border-white text-white font-semibold':'border-transparent text-verde-100 hover:text-white'}`}><Icon size={16}/>{label}</NavLink>)}</div></nav></header><main className="mx-auto w-full max-w-7xl px-4 py-6">{children}</main><footer className="border-t border-arena-200 bg-white"><div className="mx-auto flex max-w-7xl justify-between gap-4 px-4 py-4 text-xs text-slate-500"><span><strong className="text-slate-700">Maqueta de validación</strong> · Datos ficticios · Sin almacenamiento documental</span><span>Ruta: {loc.pathname}</span></div></footer></div>
+}
