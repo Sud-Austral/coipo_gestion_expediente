@@ -1,0 +1,69 @@
+insumos:
+
+  - ruta: "frontend/src/fixtures/expedientes.js"
+    sha256: "[PENDIENTE] sin calcular"
+    origen: "[PENDIENTE] quien lo entrego y cuando"
+    contiene_pii: "[VERIFICAR] archivo de datos de ejemplo que expone un catalogo de personas; vive en una carpeta de fixtures, lo que aumenta la probabilidad de que sea sintetico, y la documentacion los declara ficticios [README.md], pero eso no lo da por confirmado; patrones a contar antes de publicar: nombre de persona, correo electronico, telefono e identificador tributario nacional; conteo no verificable desde la evidencia disponible"
+    puede_versionarse: true
+    uso: "Datos de ejemplo que alimentan todas las pantallas de la maqueta a traves del contexto compartido [frontend/src/context/ExpedienteContext.jsx]"
+
+  - ruta: "frontend/src/lib/ui.jsx"
+    sha256: "[PENDIENTE] sin calcular"
+    origen: "[PENDIENTE] quien lo entrego y cuando"
+    contiene_pii: "[VERIFICAR] catalogo de estados y prioridades; 0 coincidencias de patron personal en la evidencia"
+    puede_versionarse: true
+    uso: "Define el catalogo de estados y los niveles de prioridad que muestran las pantallas"
+
+  - ruta: "frontend/package.json"
+    sha256: "[PENDIENTE] sin calcular"
+    origen: "[PENDIENTE] quien lo entrego y cuando"
+    contiene_pii: "[VERIFICAR] manifiesto de dependencias; 0 coincidencias de patron personal en la evidencia"
+    puede_versionarse: true
+    uso: "Unico manifiesto del repositorio; declara las nueve dependencias de la maqueta [frontend/package.json:1]"
+
+  - ruta: "frontend/vite.config.js"
+    sha256: "[PENDIENTE] sin calcular"
+    origen: "[PENDIENTE] quien lo entrego y cuando"
+    contiene_pii: "[VERIFICAR] configuracion de construccion; 0 coincidencias de patron personal en la evidencia"
+    puede_versionarse: true
+    uso: "Configuracion de construccion y de servidor de desarrollo"
+
+  - ruta: "README.md"
+    sha256: "[PENDIENTE] sin calcular"
+    origen: "[PENDIENTE] quien lo entrego y cuando"
+    contiene_pii: "[VERIFICAR] documentacion; 0 coincidencias de patron personal en la evidencia"
+    puede_versionarse: true
+    uso: "Declara el alcance de la maqueta, los dos perfiles de prueba y la regla de validacion de versiones"
+
+  - ruta: "frontend/VERSIONES.md"
+    sha256: "[PENDIENTE] sin calcular"
+    origen: "[PENDIENTE] quien lo entrego y cuando"
+    contiene_pii: "[VERIFICAR] bitacora de versiones; podria nombrar a quienes revisaron; conteo no verificable desde la evidencia"
+    puede_versionarse: true
+    uso: "Bitacora de versiones de la maqueta, referida desde la documentacion [README.md]"
+
+  - ruta: "frontend/ejecutar.bat"
+    sha256: "[PENDIENTE] sin calcular"
+    origen: "[PENDIENTE] quien lo entrego y cuando"
+    contiene_pii: "[VERIFICAR] script de arranque local; revisar que no incluya rutas de equipos personales; conteo no verificable desde la evidencia"
+    puede_versionarse: true
+    uso: "Atajo para ejecutar la maqueta en Windows sin usar la linea de comandos [README.md]"
+
+  - ruta: ".github/workflows/deploy.yml"
+    sha256: "[PENDIENTE] sin calcular"
+    origen: "[PENDIENTE] quien lo entrego y cuando"
+    contiene_pii: "[VERIFICAR] flujo de publicacion; 0 coincidencias de patron personal en la evidencia"
+    puede_versionarse: true
+    uso: "Publica la maqueta automaticamente para su revision"
+
+  - ruta: ".github/workflows/readme.yml"
+    sha256: "[PENDIENTE] sin calcular"
+    origen: "[PENDIENTE] quien lo entrego y cuando"
+    contiene_pii: "[VERIFICAR] flujo de documentacion; 0 coincidencias de patron personal en la evidencia"
+    puede_versionarse: true
+    uso: "Regenera la documentacion del repositorio"
+
+hallazgos:
+  - "El repositorio es publico y contiene un catalogo de personas en [frontend/src/fixtures/expedientes.js]. La documentacion los declara ficticios [README.md], pero eso no es una verificacion: corresponde [VERIFICAR] antes de dar el punto por cerrado."
+  - "No hay ningun archivo .gitignore en el inventario de la raiz del repositorio, de modo que no existe hoy una exclusion anclada donde poner un insumo con datos reales si llegara a incorporarse. No se edito ningun archivo."
+  - "La descripcion del repositorio en la plataforma nombra a una persona y un area. No se transcribe. Si el repositorio sigue siendo publico, corresponde [VERIFICAR] si esa descripcion debe mantenerse."
